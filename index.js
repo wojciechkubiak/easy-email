@@ -10,8 +10,8 @@ const port = 3000;
 
 const sendEmail = async ({ name, email, message }) => {
     let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
+        host: process.env.SMTP,
+        port: process.env.SMTP_PORT,
         secure: false,
         auth: {
             user: process.env.EMAIL_USER,
@@ -22,7 +22,7 @@ const sendEmail = async ({ name, email, message }) => {
     let info = await transporter.sendMail({
         from: `"${name}" <${email}>`,
         to: process.env.EMAIL_RECEIVER,
-        subject: `CopySearcher Website Message - ${name}`,
+        subject: `${process.env.WEBSITE_NAME} Website Message - ${name}`,
         text: `${message}`,
         html: `<h3>New message from ${email}</h3>
             <p>${message}</p>
