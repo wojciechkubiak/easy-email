@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 app.post('/', (req, res) => {
     console.log(req.body);
 
-    sendEmail({ name: req.body?.name, email: req.body?.email, message: req.body?.message }).catch(console.error);
+    sendEmail({ name: req.body?.name || req.body?.subject, email: req.body?.email, message: req.body?.message }).catch(console.error);
 
     res.send('Email sent');
 })
