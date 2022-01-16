@@ -22,7 +22,7 @@ const sendEmail = async ({ name, email, message }) => {
     let info = await transporter.sendMail({
         from: `"${name || email}" <${email}>`,
         to: process.env.EMAIL_RECEIVER,
-        subject: `${process.env.WEBSITE_NAME} Website Message - ${name || email}`,
+        subject: `${process.env.WEBSITE_NAME} Website Message - ${name || subject}`,
         text: `${message}`,
         html: `<h3>New message from ${email}</h3>
             <p>${message}</p>
